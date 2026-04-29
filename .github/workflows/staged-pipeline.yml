@@ -1,0 +1,91 @@
+name: Staged Pipeline
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  prepare:
+    name: Prepare inputs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve mock dependencies
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Validate mock config
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+  build:
+    name: Build mock package
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Compile mock sources
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Bundle mock assets
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Publish mock artifact
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+  verify:
+    name: Verify mock package
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Run mock unit tests
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Run mock integration tests
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Run mock security scan
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Run mock performance check
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+  release-preview:
+    name: Create release preview
+    runs-on: ubuntu-latest
+    needs: verify
+    steps:
+      - name: Generate mock changelog
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Create mock release notes
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"

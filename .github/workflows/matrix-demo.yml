@@ -1,0 +1,64 @@
+name: Matrix Demo
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  platform-matrix:
+    name: ${{ matrix.service }} on ${{ matrix.environment }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - api
+          - worker
+          - frontend
+        environment:
+          - dev
+          - staging
+    steps:
+      - name: Provision mock target
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Service: ${{ matrix.service }}"
+          echo "Environment: ${{ matrix.environment }}"
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Execute mock checks
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Collect mock results
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+  version-matrix:
+    name: Runtime ${{ matrix.runtime }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        runtime:
+          - node-20
+          - node-22
+          - python-3.11
+          - python-3.12
+    steps:
+      - name: Set up mock runtime
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Runtime: ${{ matrix.runtime }}"
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Run mock compatibility test
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"

@@ -1,0 +1,55 @@
+name: Manual Approval Demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Mock deployment target
+        required: true
+        default: staging
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  review:
+    name: Mock review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect requested target
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Target: ${{ inputs.target }}"
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Check mock release gate
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+  deploy:
+    name: Mock deployment
+    runs-on: ubuntu-latest
+    needs: review
+    environment: ${{ inputs.target }}
+    steps:
+      - name: Prepare mock deployment
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Deploy mock release
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Run mock post-deployment check
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"

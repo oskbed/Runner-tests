@@ -1,0 +1,24 @@
+name: Simple Smoke
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    name: Basic smoke job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Boot mock environment
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
+
+      - name: Run mock smoke check
+        run: |
+          duration=$((RANDOM % 50 + 10))
+          echo "Sleeping for ${duration} seconds"
+          sleep "${duration}"
