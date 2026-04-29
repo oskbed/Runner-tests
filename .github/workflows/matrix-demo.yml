@@ -7,7 +7,7 @@ on:
 jobs:
   platform-matrix:
     name: ${{ matrix.service }} on ${{ matrix.environment }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, paygo]
     strategy:
       fail-fast: false
       matrix:
@@ -41,7 +41,7 @@ jobs:
 
   version-matrix:
     name: Runtime ${{ matrix.runtime }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, paygo]
     strategy:
       matrix:
         runtime:

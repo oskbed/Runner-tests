@@ -8,7 +8,7 @@ on:
 jobs:
   maintenance:
     name: Mock weekly maintenance
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, paygo]
     steps:
       - name: Scan mock queue
         run: |

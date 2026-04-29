@@ -7,7 +7,7 @@ on:
 jobs:
   prepare:
     name: Prepare inputs
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, paygo]
     steps:
       - name: Resolve mock dependencies
         run: |
@@ -23,7 +23,7 @@ jobs:
 
   build:
     name: Build mock package
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, paygo]
     needs: prepare
     steps:
       - name: Compile mock sources
@@ -46,7 +46,7 @@ jobs:
 
   verify:
     name: Verify mock package
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, paygo]
     needs: build
     steps:
       - name: Run mock unit tests
@@ -75,7 +75,7 @@ jobs:
 
   release-preview:
     name: Create release preview
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, paygo]
     needs: verify
     steps:
       - name: Generate mock changelog
